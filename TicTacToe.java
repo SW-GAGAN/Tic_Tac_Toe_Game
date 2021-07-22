@@ -1,19 +1,103 @@
-import java.util.*;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ * print welcome message
+ * <p>
+ * create a empty tic tac toe board wit 3 Rows and 3 Calum , simulator for tic tac toe
+ * game is player and computer
+ */
 
 public class TicTacToe {
-    // creating meathod called Creatboard
-    public static char[] CreateBoard() {
-        char[] board = new char[10];
-        for (int i = 1; i < 10; i++) {
-            board[i] = ' ';
-        }
-        return board;
-    }
-
     public static void main(String[] args) {
-        // print welcome message
-        System.out.println("welcome toTicTacTo game");
-        char[] board = CreateBoard();
+        System.out.println("WELCOME TO TIC TAC TOE GAME");
+
+        char[][] gameBoard = {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+
+        printGameBoard(gameBoard);
+
+        Scanner scanner = new Scanner(System.in);
+        playerTurn(gameBoard, scanner);
+
+        Random rand = new Random();
+        int computerPlay = rand.nextInt(9) + 1;
+        printGameBoard(gameBoard);
 
     }
+
+    /**
+     * we are checking  to empty space and perform valid move
+     * what position are empty.
+     */
+    private static boolean isValidMove(char[][] board, String position) {
+        switch (position) {
+            case "1":
+                return (board[0][0] == ' ');
+            case "2":
+                return (board[0][1] == ' ');
+            case "3":
+                return (board[0][2] == ' ');
+            case "4":
+                return (board[1][0] == ' ');
+            case "5":
+                return (board[1][1] == ' ');
+            case "6":
+                return (board[1][2] == ' ');
+            case "7":
+                return (board[2][0] == ' ');
+            case "8":
+                return (board[2][1] == ' ');
+            case "9":
+                return (board[2][2] == ' ');
+            default:
+                return false;
+        }
+    }
+
+    private static void playerTurn(char[][] gameBoard, Scanner scanner) {
+        System.out.println("Where would you like to play ? (1-9)");
+        String playerInput = scanner.nextLine();
+        System.out.println(playerInput);
+
+        switch (playerInput) {
+            case "1":
+                gameBoard[0][0] = 'X';
+                break;
+            case "2":
+                gameBoard[0][1] = 'X';
+                break;
+            case "3":
+                gameBoard[0][2] = 'X';
+                break;
+            case "4":
+                gameBoard[1][0] = 'X';
+                break;
+            case "5":
+                gameBoard[1][1] = 'X';
+                break;
+            case "6":
+                gameBoard[1][2] = 'X';
+                break;
+            case "7":
+                gameBoard[2][0] = 'X';
+                break;
+            case "8":
+                gameBoard[2][1] = 'X';
+                break;
+            case "9":
+                gameBoard[2][2] = 'X';
+                break;
+            default:
+                System.out.println(":(");
+        }
+    }
+
+    private static void printGameBoard(char[][] gameBoard) {
+        System.out.println(gameBoard[0][0] + "|" + gameBoard[0][1] + "|" + gameBoard[0][2]);
+        System.out.println("-+-+-");
+        System.out.println(gameBoard[1][0] + "|" + gameBoard[1][1] + "|" + gameBoard[1][2]);
+        System.out.println("-+-+-");
+        System.out.println(gameBoard[2][0] + "|" + gameBoard[2][1] + "|" + gameBoard[2][2]);
+    }
+
 }
